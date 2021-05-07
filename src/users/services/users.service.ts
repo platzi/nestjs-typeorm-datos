@@ -4,8 +4,8 @@ import { Repository } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
 import { Client } from 'pg';
 
-import { User } from '../entities/user.entity';
-import { Order } from '../entities/order.entity';
+import { User } from '../../database/entities/users/user.entity';
+import { Order } from '../../database/entities/users/order.entity';
 import { CreateUserDto, UpdateUserDto } from '../dtos/user.dto';
 
 import { ProductsService } from './../../products/services/products.service';

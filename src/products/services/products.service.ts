@@ -2,9 +2,10 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Between, FindConditions } from 'typeorm';
 
-import { Product } from './../entities/product.entity';
-import { Category } from './../entities/category.entity';
-import { Brand } from './../entities/brand.entity';
+import { Product } from '../../database/entities/products/product.entity';
+import { Category } from '../../database/entities/products/category.entity';
+import { Brand } from '../../database/entities/products/brand.entity';
+import { User } from '../../database/entities/users/user.entity';
 import {
   CreateProductDto,
   UpdateProductDto,
@@ -17,6 +18,7 @@ export class ProductsService {
     @InjectRepository(Product) private productRepo: Repository<Product>,
     @InjectRepository(Brand) private brandRepo: Repository<Brand>,
     @InjectRepository(Category) private categoryRepo: Repository<Category>,
+    @InjectRepository(User) private usersRepo: Repository<User>,
   ) {}
 
   findAll(params?: FilterProductsDto) {
@@ -40,6 +42,8 @@ export class ProductsService {
   }
 
   async findOne(id: number) {
+    const rta = await this.usersRepo.find();
+    console.log(rta);
     const product = await this.productRepo.findOne(id, {
       relations: ['brand', 'categories'],
     });

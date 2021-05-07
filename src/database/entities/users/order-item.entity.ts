@@ -9,7 +9,7 @@ import {
 
 import { Exclude } from 'class-transformer';
 
-import { Product } from '../../products/entities/product.entity';
+import { Product } from '../products/product.entity';
 import { Order } from './order.entity';
 
 @Entity()

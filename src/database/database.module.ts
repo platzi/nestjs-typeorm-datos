@@ -8,6 +8,15 @@ import config from '../config';
 const API_KEY = '12345634';
 const API_KEY_PROD = 'PROD1212121SA';
 
+import { Product } from './entities/products/product.entity';
+import { Brand } from './entities/products/brand.entity';
+import { Category } from './entities/products/category.entity';
+
+import { Customer } from './entities/users/customer.entity';
+import { OrderItem } from './entities/users/order-item.entity';
+import { Order } from './entities/users/order.entity';
+import { User } from './entities/users/user.entity';
+
 // client.query('SELECT * FROM tasks', (err, res) => {
 //   console.error(err);
 //   console.log(res.rows);
@@ -28,7 +37,15 @@ const API_KEY_PROD = 'PROD1212121SA';
           password,
           database: dbName,
           synchronize: false,
-          autoLoadEntities: true,
+          entities: [
+            Product,
+            Brand,
+            Category,
+            Customer,
+            OrderItem,
+            Order,
+            User,
+          ],
         };
       },
     }),
