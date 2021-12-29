@@ -14,9 +14,8 @@ import { Category } from '../database/entities/products/category.entity';
 import { User } from '../database/entities/users/user.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Brand, Product, Category, User])],
   controllers: [ProductsController, CategoriesController, BrandsController],
   providers: [ProductsService, BrandsService, CategoriesService],
-  exports: [ProductsService, TypeOrmModule],
+  exports: [ProductsService],
 })
 export class ProductsModule {}

@@ -16,10 +16,7 @@ import { OrderItemService } from './services/order-item.service';
 import { OrderItem } from '../database/entities/users/order-item.entity';
 
 @Module({
-  imports: [
-    ProductsModule,
-    TypeOrmModule.forFeature([Customer, User, Order, OrderItem]),
-  ],
+  imports: [ProductsModule],
   controllers: [
     CustomerController,
     UsersController,
