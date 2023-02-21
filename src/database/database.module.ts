@@ -10,8 +10,7 @@ import { Category } from './entities/products/category.entity';
 import { Customer } from './entities/users/customer.entity';
 import { OrderItem } from './entities/users/order-item.entity';
 import { Order } from './entities/users/order.entity';
-import { UserRepository } from './entities/users/user.repository';
-import { UsersServiceA } from './providers/user.service';
+import { User } from './entities/users/user.entity';
 
 @Global()
 @Module({
@@ -27,7 +26,7 @@ import { UsersServiceA } from './providers/user.service';
           username: user,
           password,
           database: dbName,
-          synchronize: false,
+          synchronize: true,
           autoLoadEntities: true,
         };
       },
@@ -39,10 +38,10 @@ import { UsersServiceA } from './providers/user.service';
       Customer,
       OrderItem,
       Order,
-      UserRepository,
+      User,
     ]),
   ],
-  providers: [UsersServiceA],
+  providers: [],
   exports: [TypeOrmModule],
 })
 export class DatabaseModule {}
