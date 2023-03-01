@@ -19,8 +19,12 @@ export class OrderItemService {
   ) {}
 
   async create(data: CreateOrderItemDto) {
-    const order = await this.orderRepo.findOne(data.orderId);
-    const product = await this.productRepo.findOne(data.productId);
+    const order = await this.orderRepo.findOne({
+      where: { id: data.orderId },
+    });
+    const product = await this.productRepo.findOne({
+      where: { id: data.productId },
+    });
     const item = new OrderItem();
     item.order = order;
     item.product = product;
@@ -29,13 +33,17 @@ export class OrderItemService {
   }
 
   async update(id: number, changes: UpdateOrderItemDto) {
-    const item = await this.itemRepo.findOne(id);
+    const item = await this.itemRepo.findOne({ where: { id } });
     if (changes.orderId) {
-      const order = await this.orderRepo.findOne(changes.orderId);
+      const order = await this.orderRepo.findOne({
+        where: { id: changes.orderId },
+      });
       item.order = order;
     }
     if (changes.productId) {
-      const product = await this.productRepo.findOne(changes.productId);
+      const product = await this.productRepo.findOne({
+        where: { id: changes.productId },
+      });
       item.product = product;
     }
     this.itemRepo.merge(item, changes);
